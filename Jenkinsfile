@@ -70,7 +70,6 @@ pipeline {
                  }
              }
          } 
-        }
 	 stage ('Cleanup Artifacts') {
              steps {
                  script {
@@ -84,10 +83,10 @@ pipeline {
                 script {
                     sh "curl -v -k --user leon:${JENKINS_API_TOKEN} -X POST -H 'cache-control: no-cache' -H 'content-type: application/x-www-form-urlencoded' --data 'IMAGE_TAG=${IMAGE_TAG}' 'ec2-54-147-53-235.compute-1.amazonaws.com:8080/job/Reddit-Clone-CD/buildWithParameters?token=gitops-token'"
                 }
-            }
-         }
-     }
-        post {
+             }
+           }
+        }
+	 post {
           always {
             emailext attachLog: true,
                subject: "'${currentBuild.result}'",
@@ -96,7 +95,6 @@ pipeline {
                    "URL: ${env.BUILD_URL}<br/>",
                to: 'shashank.shekhar.samal@gmail.com',                              
                attachmentsPattern: 'trivyfs.txt,trivyimage.txt'
-        }
-      }
-
-}
+           }
+          }
+} 
