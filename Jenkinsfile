@@ -86,7 +86,7 @@ pipeline {
                 }
             }
          }
-       }
+     }
         post {
           always {
             emailext attachLog: true,
@@ -98,4 +98,5 @@ pipeline {
                attachmentsPattern: 'trivyfs.txt,trivyimage.txt'
         }
       }
+
 }
